@@ -1,5 +1,10 @@
 <script>
-export default {}
+import Button from './Button.vue'
+export default {
+  components: {
+    Button,
+  },
+}
 </script>
 <template>
   <header class="header">
@@ -8,7 +13,7 @@ export default {}
       <h1 class="header__logo-title">brix <span>templates</span></h1>
     </div>
 
-    <button class="button">Clone now</button>
+    <Button label="Clone now" />
   </header>
 </template>
 
@@ -34,17 +39,5 @@ export default {}
       }
     }
   }
-}
-.button {
-  padding: 20px 40px;
-  border-radius: 56px;
-  background: #4a3aff;
-  border: none;
-  color: #fff;
-  text-align: center;
-
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 20px;
 }
 </style>
