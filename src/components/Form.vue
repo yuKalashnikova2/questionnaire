@@ -69,8 +69,9 @@ export default {
   background: var(--neutral-100, #fff);
   box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
   width: 100%;
-  height: 100vh;
+//   height: 100vh;
   padding: 32px 46px 80px 46px;
+  margin-bottom:100px;
   &__steps-list {
     display: flex;
     align-items: center;

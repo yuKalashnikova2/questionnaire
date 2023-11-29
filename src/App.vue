@@ -1,10 +1,12 @@
 <script>
 import Header from './components/Header.vue'
 import Form from './components/Form.vue'
+import Footer from './components/Footer.vue'
 export default {
   components: {
     Header,
-    Form
+    Form,
+    Footer
   },
 }
 </script>
@@ -21,7 +23,16 @@ export default {
       </div>
       <Form />
     </div>
+
   </div>
+ 
+  <div class="gray-line">
+  </div>
+
+  <div class="container">
+    <Footer />
+  </div>
+
 </template>
 
 <style lang="scss">
@@ -33,6 +44,7 @@ export default {
   margin: auto;
   max-width: 700px;
   text-align: center;
+
   &__title {
     color: #170f49;
     text-align: center;
@@ -53,5 +65,8 @@ export default {
     margin-top: 12px;
     margin-bottom: 42px;
   }
+}
+.gray-line {
+  border-bottom: 1px solid #d9dbe9;
 }
 </style>
