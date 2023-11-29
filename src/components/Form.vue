@@ -51,6 +51,14 @@ export default {
         </div>
       </li>
     </ul>
+
+    <div class="form__contact-details">
+      <h2 class="form__contact-details__title">Contact details</h2>
+      <span class="form__contact-details__text"
+        >Lorem ipsum dolor sit amet consectetur adipisc.</span
+      >
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -110,6 +118,25 @@ export default {
   }
   &__contact-details {
     margin-top: 64px;
+    margin-bottom: 80px;
+    text-align: start;
+    &__title {
+      color: #170f49;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-size: 24px;
+
+      font-weight: 700;
+      line-height: 35px;
+    }
+    &__text {
+      margin: 7.5px 0 40px 0;
+      color: #6f6c90;
+      font-feature-settings: 'clig' off, 'liga' off;
+      font-size: 18px;
+
+      font-weight: 400;
+      line-height: 30px;
+    }
   }
 }
 
