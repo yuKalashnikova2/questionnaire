@@ -1,8 +1,10 @@
 <script>
 import Header from './components/Header.vue'
+import Form from './components/Form.vue'
 export default {
   components: {
     Header,
+    Form
   },
 }
 </script>
@@ -17,6 +19,7 @@ export default {
         Please fill the form below to receive a quote for your project. Feel
         free to add as much detail as needed.
       </div>
+      <Form />
     </div>
   </div>
 </template>
