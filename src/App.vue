@@ -2,11 +2,21 @@
 import Header from './components/Header.vue'
 import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
+import Inputs from './components/Inputs.vue'
 export default {
   components: {
     Header,
     Form,
-    Footer
+    Footer,
+    Inputs,
+  },
+  data() {
+    return {
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+    }
   },
 }
 </script>
@@ -21,18 +31,44 @@ export default {
         Please fill the form below to receive a quote for your project. Feel
         free to add as much detail as needed.
       </div>
-      <Form />
+      <Form>
+        <Inputs
+          v-model:enterText.trim="name"
+          name="Name"
+          placeholder="John Carter"
+        >
+          <img src="/assets/svg/inputs/user.svg" alt="user" />
+        </Inputs>
+        <Inputs
+          v-model:enterText.trim="email"
+          name="Email"
+          placeholder="Email address"
+        >
+          <img src="/assets/svg/inputs/email.svg" alt="email" />
+        </Inputs>
+        <Inputs
+          v-model:enterText.trim="phone"
+          name="Phone Number"
+          placeholder="(123) 456 - 7890"
+        >
+          <img src="/assets/svg/inputs/phone.svg" alt="phone" />
+        </Inputs>
+        <Inputs
+          v-model:enterText.trim="company"
+          name="Company"
+          placeholder="Company name"
+        >
+          <img src="/assets/svg/inputs/company.svg" alt="company" />
+        </Inputs>
+      </Form>
     </div>
+  </div>
 
-  </div>
- 
-  <div class="gray-line">
-  </div>
+  <div class="gray-line"></div>
 
   <div class="container">
     <Footer />
   </div>
-
 </template>
 
 <style lang="scss">

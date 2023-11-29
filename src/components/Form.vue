@@ -57,7 +57,11 @@ export default {
       <span class="form__contact-details__text"
         >Lorem ipsum dolor sit amet consectetur adipisc.</span
       >
-      <slot></slot>
+
+      <div class="form__slots">
+        <slot></slot>
+      </div>
+ 
     </div>
   </div>
 </template>
@@ -119,7 +123,7 @@ export default {
   }
   &__contact-details {
     margin-top: 64px;
-    margin-bottom: 80px;
+    // margin-bottom: 80px;
     text-align: start;
     &__title {
       color: #170f49;
@@ -138,6 +142,12 @@ export default {
       font-weight: 400;
       line-height: 30px;
     }
+  }
+  &__slots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin: auto;
   }
 }
 
