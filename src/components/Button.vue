@@ -8,6 +8,10 @@ export default {
     smallSize: {
         type: Boolean,
         required: false
+    },
+    lightButton: {
+        type: Boolean, 
+        required: false
     }
   },
   emits: {
@@ -16,7 +20,7 @@ export default {
 }
 </script>
 <template>
-  <button :class="['button', smallSize ? 'button_button-small' : '']">{{ label }}</button>
+  <button :class="['button', smallSize ? 'button_button-small' : '', lightButton ? 'button_previous': '']">{{ label }}</button>
 </template>
 
 <style lang="scss" scoped>
@@ -36,6 +40,13 @@ export default {
     font-size: 16px;
     font-weight: 500;
     line-height: 18px;
+  }
+  &_previous {
+    font-weight: 400;
+    background-color: #fff;
+    color: #4A3AFF;
+    border-radius: 66px;
+    border: 1px solid var(--primary-color-1, #4A3AFF);  
   }
 }
 </style>
