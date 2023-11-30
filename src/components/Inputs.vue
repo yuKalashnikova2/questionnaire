@@ -11,7 +11,11 @@ export default {
     },
     name: {
       type: String,
-      default: 'Name input',
+      required: false,
+    },
+    inputForm: {
+        type: Boolean,
+        required: false
     },
     enterText: String,
   },
@@ -20,7 +24,7 @@ export default {
 </script>
 
 <template>
-  <div class="input">
+  <div :class="['input', inputForm  ? 'input_padding-top' :'' ]">
     {{ enterText }}
     <label class="input__label" :for="name">{{ name }}</label>
     <div class="input__enter">
@@ -43,14 +47,17 @@ export default {
 .input {
   display: flex;
   flex-direction: column;
-  padding-top: 40px;
-  gap: 18px;
+//   gap: 18px;
+&_padding-top {
+    padding-top: 40px;
+}
   &__label {
     color: var(--neutral-800, #170f49);
     font-feature-settings: 'clig' off, 'liga' off;
     font-size: 18px;
     font-weight: 500;
     line-height: 20px;
+    margin-bottom: 17px;
   }
   &__enter {
     display: flex;

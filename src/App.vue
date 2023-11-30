@@ -16,6 +16,7 @@ export default {
       email: '',
       phone: '',
       company: '',
+      inputForm: false
     }
   },
 }
@@ -36,29 +37,33 @@ export default {
           v-model:enterText.trim="name"
           name="Name"
           placeholder="John Carter"
+          inputForm
         >
-          <img src="/assets/svg/inputs/user.svg" alt="user" />
+          <img width="20" height="25"  src="/assets/svg/inputs/user.svg" alt="user" />
         </Inputs>
         <Inputs
           v-model:enterText.trim="email"
           name="Email"
           placeholder="Email address"
+          inputForm
         >
-          <img src="/assets/svg/inputs/email.svg" alt="email" />
+          <img width="20" height="25" src="/assets/svg/inputs/email.svg" alt="email" />
         </Inputs>
         <Inputs
           v-model:enterText.trim="phone"
           name="Phone Number"
           placeholder="(123) 456 - 7890"
+          inputForm
         >
-          <img src="/assets/svg/inputs/phone.svg" alt="phone" />
+          <img width="20" height="25"  src="/assets/svg/inputs/phone.svg" alt="phone" />
         </Inputs>
         <Inputs
           v-model:enterText.trim="company"
           name="Company"
           placeholder="Company name"
+          inputForm
         >
-          <img src="/assets/svg/inputs/company.svg" alt="company" />
+          <img width="20" height="25"  src="/assets/svg/inputs/company.svg" alt="company" />
         </Inputs>
       </Form>
     </div>

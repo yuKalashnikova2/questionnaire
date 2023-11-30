@@ -1,10 +1,12 @@
 <script>
 import Logo from './Logo.vue'
 import Button from './Button.vue'
+import Inputs from './Inputs.vue'
 export default {
   components: {
     Logo,
     Button,
+    Inputs
   },
   data() {
     return {
@@ -24,8 +26,10 @@ export default {
     </div>
 
     <div class="footer__subscribe">
-      <input type="text" placeholder="Enter your email" />
-      <Button />
+      <Inputs placeholder="Enter your email">
+        <Button label="Subscribe" />
+    </Inputs>
+  
     </div>
   </div>
 </template>
@@ -34,6 +38,7 @@ export default {
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 57px 0;
 
   &__copyright {
