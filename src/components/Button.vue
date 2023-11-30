@@ -5,14 +5,18 @@ export default {
       type: String,
       default: 'Button',
     },
+    smallSize: {
+        type: Boolean,
+        required: false
+    }
   },
   emits: {
-    
+
   }
 }
 </script>
 <template>
-  <button class="button">{{ label }}</button>
+  <button :class="['button', smallSize ? 'button_button-small' : '']">{{ label }}</button>
 </template>
 
 <style lang="scss" scoped>
@@ -26,5 +30,12 @@ export default {
   font-size: 18px;
   font-weight: 700;
   line-height: 20px;
+  cursor: pointer;
+  &_button-small {
+    padding: 14px 26px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+  }
 }
 </style>

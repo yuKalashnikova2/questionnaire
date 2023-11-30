@@ -64,6 +64,7 @@ export default {
  
     </div>
   </div>
+  <Button label="Next" />
 </template>
 
 <style lang="scss" scoped>

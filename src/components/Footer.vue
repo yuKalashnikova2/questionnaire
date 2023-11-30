@@ -27,7 +27,7 @@ export default {
 
     <div class="footer__subscribe">
       <Inputs placeholder="Enter your email">
-        <Button label="Subscribe" />
+        <Button label="Subscribe" smallSize />
     </Inputs>
   
     </div>
