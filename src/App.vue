@@ -3,20 +3,23 @@ import Header from './components/Header.vue'
 import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
 import Inputs from './components/Inputs.vue'
+import Checkbox from './components/Checkbox.vue'
 export default {
   components: {
     Header,
     Form,
     Footer,
     Inputs,
-  },
+    Checkbox
+},
   data() {
     return {
       name: '',
       email: '',
       phone: '',
       company: '',
-      inputForm: false
+      inputForm: false,
+      checkboxActive: false,
     }
   },
 }
@@ -32,8 +35,11 @@ export default {
         Please fill the form below to receive a quote for your project. Feel
         free to add as much detail as needed.
       </div>
+
       <Form>
-        <Inputs
+        <Checkbox label="Development" id="development" value="development" v-model="checkboxActive"  />
+
+        <!-- <Inputs
           v-model:enterText.trim="name"
           name="Name"
           placeholder="John Carter"
@@ -64,7 +70,7 @@ export default {
           inputForm
         >
           <img width="20" height="25"  src="/assets/svg/inputs/company.svg" alt="company" />
-        </Inputs>
+        </Inputs> -->
       </Form>
     </div>
   </div>

@@ -92,7 +92,7 @@ export default {
         display: flex;
         align-items: center;
 
-        &:last-child .form__steps-list__step-line {
+        &:last-child .form-block__steps-list__step-line {
           display: none;
         }
         &-bubble {
@@ -129,7 +129,7 @@ export default {
     }
     &__contact-details {
       margin-top: 64px;
-      // margin-bottom: 80px;
+      // margin-bottom: 40px;
       text-align: start;
       &__title {
         color: #170f49;
@@ -140,7 +140,8 @@ export default {
         line-height: 35px;
       }
       &__text {
-        margin: 7.5px 0 40px 0;
+        // margin: 7.5px 0 40px;
+        // padding-bottom: 40px ;
         color: #6f6c90;
         font-feature-settings: 'clig' off, 'liga' off;
         font-size: 18px;
@@ -153,7 +154,8 @@ export default {
       display: flex;
       flex-wrap: wrap;
       gap: 28px;
-      margin: auto;
+      // margin: auto;
+      margin-top: 40px;
     }
   }
   &-buttons {
