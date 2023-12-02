@@ -1,0 +1,10 @@
+    // если value === element.id тогда проверяем что такого элемента нет в массиве с помощью
+        //
+        // if( this.servicesChecked.length !== 0 && this.servicesChecked.includes(value)) {
+        //   let index = this.servicesChecked.indexOf(value)
+        
+        //   this.servicesChecked.splice(index, 1);
+        //   element.checked = !element.checked
+        //   console.log('удалили', this.servicesChecked.splice(index, 1) )
+
+        // }

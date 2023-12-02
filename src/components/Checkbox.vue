@@ -20,7 +20,7 @@ export default {
     checkboxActive: Boolean,
     modelValue: Boolean,
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'updateCheckboxGroup'],
 }
 </script>
 
@@ -31,6 +31,7 @@ export default {
         type="checkbox"
         :id="id"
         :value="modelValue"
+        :checked="checked"
         @change="this.$emit('update:modelValue', $event.target.checked)"
       />
       <img :src="'/assets/svg/checkbox/' + value + '.svg'" :alt="value" />

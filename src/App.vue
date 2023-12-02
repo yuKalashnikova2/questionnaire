@@ -3,15 +3,15 @@ import Header from './components/Header.vue'
 import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
 import Inputs from './components/Inputs.vue'
-import Checkbox from './components/Checkbox.vue'
+import CheckboxMultiple from './components/CheckboxMultiple.vue'
 export default {
   components: {
     Header,
     Form,
     Footer,
     Inputs,
-    Checkbox
-},
+    CheckboxMultiple,
+  },
   data() {
     return {
       name: '',
@@ -19,8 +19,39 @@ export default {
       phone: '',
       company: '',
       inputForm: false,
-      checkboxActive: false,
+      services: [
+        {
+          label: 'Development',
+          id: 'development',
+          value: 'development',
+          checked: false,
+        },
+        {
+          label: 'Marketing',
+          id: 'marketing',
+          value: 'marketing',
+          checked: false,
+        },
+        {
+          label: 'Web Design',
+          id: 'web-design',
+          value: 'web-design',
+          checked: false,
+        },
+        { label: 'Other', id: 'other', value: 'other', checked: false },
+      ],
+      servicesChecked: ['development', 'marketing'],
     }
+  },
+  methods: {
+    setCheckboxValue: function (value) {
+      this.services.forEach((element) => {
+        if (value === element.id) {
+          element.checked = !element.checked
+          console.log(value)
+        }
+      })
+    },
   },
 }
 </script>
@@ -37,8 +68,13 @@ export default {
       </div>
 
       <Form>
-        <Checkbox label="Development" id="development" value="development" v-model="checkboxActive"  />
-
+        <CheckboxMultiple
+          name="servicesN"
+          v-model:value="servicesChecked"
+          :services="services"
+          @checkbox="setCheckboxValue"
+        />
+        {{ servicesChecked }}
         <!-- <Inputs
           v-model:enterText.trim="name"
           name="Name"
