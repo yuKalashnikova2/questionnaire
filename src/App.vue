@@ -44,13 +44,14 @@ export default {
     }
   },
   methods: {
-    setCheckboxValue: function (value) {
-      this.services.forEach((element) => {
-        if (value === element.id) {
-          element.checked = !element.checked
-          console.log(value)
-        }
-      })
+    setCheckboxValue: function (value, arr) {
+      const index = arr.indexOf(value)
+      if (index !== -1) {
+        arr.splice(index, 1)
+      } else {
+        arr.push(value)
+      }
+      return arr
     },
   },
 }
@@ -71,6 +72,7 @@ export default {
         <CheckboxMultiple
           name="servicesN"
           v-model:value="servicesChecked"
+          :arr="servicesChecked"
           :services="services"
           @checkbox="setCheckboxValue"
         />

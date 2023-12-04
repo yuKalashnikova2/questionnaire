@@ -26,7 +26,9 @@ export default {
       checkboxActive: false,
     }
   },
-  methods: {},
+  emits: ['update: modelValue',
+  'checkbox'],
+
 }
 </script>
 <template>
@@ -38,11 +40,10 @@ export default {
     :id="service.id"
     :value="service.value"
     :modelValue="service.checked"
-    @click.prevent="$emit('checkbox', service.id)"
+    @click.prevent="$emit('checkbox', service.id, value )"
   />
 
   {{ servicesChecked }}
-  {{ checkboxActive }}
 </template>
 
 <style lang="scss"></style>
