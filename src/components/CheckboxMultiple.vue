@@ -17,33 +17,17 @@ export default {
       type: String,
       required: true,
     },
-    servicesChecked: {
-      type: Array,
-    },
   },
-  data() {
-    return {
-      checkboxActive: false,
-    }
-  },
-  emits: ['update: modelValue',
-  'checkbox'],
-
+  emits: ['update: modelValue', 'checkbox'],
 }
 </script>
 <template>
   <Checkbox
     v-for="service in services"
-    :checked="service.checked"
+    :checked="value.includes(service.id)"
     :name="name"
     :label="service.label"
     :id="service.id"
-    :value="service.value"
-    :modelValue="service.checked"
-    @click.prevent="$emit('checkbox', service.id, value )"
+    @click.prevent="$emit('checkbox', service.id, value)"
   />
-
-  {{ servicesChecked }}
 </template>
-
-<style lang="scss"></style>

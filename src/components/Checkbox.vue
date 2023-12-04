@@ -13,28 +13,15 @@ export default {
       type: Boolean,
       default: false,
     },
-    value: {
-      type: String,
-      default: 'value',
-    },
-    checkboxActive: Boolean,
-    modelValue: Boolean,
   },
-  emits: ['update:modelValue', 'updateCheckboxGroup'],
 }
 </script>
 
 <template>
-  <label :class="['checkbox', modelValue ? 'checkbox_checked' : '']">
+  <label :class="['checkbox', checked ? 'checkbox_checked' : '']">
     <div class="checkbox__input">
-      <input
-        type="checkbox"
-        :id="id"
-        :value="modelValue"
-        :checked="checked"
-        @change="this.$emit('update:modelValue', $event.target.checked)"
-      />
-      <img :src="'/assets/svg/checkbox/' + value + '.svg'" :alt="value" />
+      <input type="checkbox" :id="id" :checked="checked" />
+      <img :src="'/assets/svg/checkbox/' + id + '.svg'" :alt="id" />
     </div>
 
     <div>{{ label }}</div>

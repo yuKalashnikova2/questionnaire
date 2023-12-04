@@ -23,24 +23,21 @@ export default {
         {
           label: 'Development',
           id: 'development',
-          value: 'development',
           checked: false,
         },
         {
           label: 'Marketing',
           id: 'marketing',
-          value: 'marketing',
           checked: false,
         },
         {
           label: 'Web Design',
           id: 'web-design',
-          value: 'web-design',
           checked: false,
         },
-        { label: 'Other', id: 'other', value: 'other', checked: false },
+        { label: 'Other', id: 'other', checked: false },
       ],
-      servicesChecked: ['development', 'marketing'],
+      servicesChecked: [],
     }
   },
   methods: {
@@ -51,6 +48,7 @@ export default {
       } else {
         arr.push(value)
       }
+      console.log('выполнено')
       return arr
     },
   },
@@ -60,7 +58,6 @@ export default {
 <template>
   <div class="container">
     <Header />
-
     <div class="preview">
       <h1 class="preview__title">Get a project quote</h1>
       <div class="preview__text">
@@ -72,11 +69,9 @@ export default {
         <CheckboxMultiple
           name="servicesN"
           v-model:value="servicesChecked"
-          :arr="servicesChecked"
           :services="services"
           @checkbox="setCheckboxValue"
         />
-        {{ servicesChecked }}
         <!-- <Inputs
           v-model:enterText.trim="name"
           name="Name"
