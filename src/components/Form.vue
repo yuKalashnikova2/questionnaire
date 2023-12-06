@@ -1,8 +1,14 @@
 <script>
 import Button from './Button.vue'
+import Inputs from './Inputs.vue'
+import Radio from './Radio.vue'
+import CheckboxMultiple from './CheckboxMultiple.vue'
 export default {
   components: {
     Button,
+    Inputs,
+    Radio,
+    CheckboxMultiple,
   },
   props: {
     formInfo: {
@@ -12,11 +18,45 @@ export default {
   },
   data() {
     return {
+
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      inputForm: false,
+
       stepsProgressive: {
         steps: { 1: true, 2: false, 3: false, 4: false },
         step: ['1', '2', '3', '4'],
         currentStep: 1,
       },
+
+      services: [
+        {
+          label: 'Development',
+          id: 'development',
+          checked: false,
+        },
+        {
+          label: 'Marketing',
+          id: 'marketing',
+          checked: false,
+        },
+        {
+          label: 'Web Design',
+          id: 'web-design',
+          checked: false,
+        },
+        { label: 'Other', id: 'other', checked: false },
+      ],
+      servicesChecked: [],
+         prices: [
+      {quantity: '$5.000 - $10.000', id: 'p1'},
+      {quantity: '$10.000 - $20.000', id: 'p2'},
+      {quantity: '$20.000 - $50.000', id: 'p3'},
+      {quantity: '$50.000 +', id: 'p4'},
+      ],
+    selectedPriceValue: '' 
     }
   },
 
@@ -24,6 +64,7 @@ export default {
     nextStep() {
       this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
+
     },
     previousStep() {
       this.stepsProgressive.currentStep--
@@ -35,12 +76,29 @@ export default {
     styleColor() {
       index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
     },
+    setCheckboxValue: function (value, arr) {
+      const index = arr.indexOf(value)
+      if (index !== -1) {
+        arr.splice(index, 1)
+      } else {
+        arr.push(value)
+      }
+      console.log('выполнено')
+      return arr
+    },
+    selectedPrice: function (value, oldValue) {
+      if(typeof value === 'String') {
+        oldValue = value
+        console.log(oldValue, 'TYT')
+      }
+     
+    }
   },
 }
 </script>
 <template>
   <div class="form">
-    <div class="form-block" v-for="info in formInfo" :key="info.id">
+    <div class="form-block">
       <ul class="form-block__steps-list">
         <li
           class="form-block__steps-list__step"
@@ -70,6 +128,7 @@ export default {
           'form-block__contact-details',
           info.id === 'submit' ? 'form-block__contact-details_text-center' : '',
         ]"
+         v-for="info in formInfo" :key="info.id"
       >
         <img
           class="form-block__contact-details__img"
@@ -77,23 +136,77 @@ export default {
           alt="submit"
           v-if="info.id === 'submit'"
         />
-        <h2 class="form-block__contact-details__title">{{ info.title }}</h2>
-        <span class="form-block__contact-details__text">{{
-          info.subtitle
-        }}</span>
-        <div class="button-form__submit" v-if="info.id === 'submit'">
+        <h2 class="form-block__contact-details__title">
+          {{info.title}}
+        </h2>
+        <span class="form-block__contact-details__text">{{info.subtitle}}</span>
+        <div class="button-form__submit" v-if="info.id === 'submit' && this.stepsProgressive.currentStep === '4'">
           <Button label="Submit" />
         </div>
 
         <div class="form-block__slots">
-          <slot></slot>
+          <div v-if="info.id === 'input'">
+            <Inputs
+          v-model:enterText.trim="name"
+          name="Name"
+          placeholder="John Carter"
+          inputForm
+        >
+          <img width="20" height="25"  src="/assets/svg/inputs/user.svg" alt="user" />
+        </Inputs>
+      <Inputs
+          v-model:enterText.trim="email"
+          name="Email"
+          placeholder="Email address"
+          inputForm
+        >
+          <img width="20" height="25" src="/assets/svg/inputs/email.svg" alt="email" />
+        </Inputs>
+        <Inputs
+          v-model:enterText.trim="phone"
+          name="Phone Number"
+          placeholder="(123) 456 - 7890"
+          inputForm
+        >
+          <img width="20" height="25"  src="/assets/svg/inputs/phone.svg" alt="phone" />
+        </Inputs>
+        <Inputs
+          v-model:enterText.trim="company"
+          name="Company"
+          placeholder="Company name"
+          inputForm
+        >
+          <img width="20" height="25"  src="/assets/svg/inputs/company.svg" alt="company" />
+        </Inputs>
+          </div>
+       
+          <CheckboxMultiple
+          v-if="info.id === 'checkbox' "
+          name="servicesN"
+          v-model:value="servicesChecked"
+          :services="services"
+          @checkbox="setCheckboxValue"
+           />
+           <div v-for="price in prices" :key="price.id"
+            v-if="info.id === 'radio'">
+            <Radio
+            :value="price.quantity"
+            :label="price.quantity"
+            :id="price.id"
+            name="price"
+            v-model:oldValue="selectedPriceValue"
+            @update="selectedPrice" />
+          </div>
+       
         </div>
       </div>
     </div>
 
     <div class="form-buttons">
       <Button label="Previous step" lightButton @click="previousStep" />
-      <Button label="Next step" @click="nextStep" />
+      <Button label="Next step"
+       @click="nextStep" 
+      />
     </div>
   </div>
 </template>
@@ -190,7 +303,7 @@ export default {
       flex-wrap: wrap;
       gap: 28px;
       // margin: auto;
-      margin-top: 40px;
+      // margin-top: 40px;
     }
   }
   &-buttons {
