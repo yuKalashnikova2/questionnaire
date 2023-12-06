@@ -47,10 +47,6 @@ export default {
 .input {
   display: flex;
   flex-direction: column;
-//   gap: 18px;
-&_padding-top {
-    padding-top: 40px;
-}
   &__label {
     color: var(--neutral-800, #170f49);
     font-feature-settings: 'clig' off, 'liga' off;

@@ -17,64 +17,18 @@ export default {
   },
   data() {
     return {
-      // name: '',
-      // email: '',
-      // phone: '',
-      // company: '',
-      // inputForm: false,
       formInfo: [
         {title: 'Contact details' , subtitle: 'Lorem ipsum dolor sit amet consectetur adipisc.', id: 'input'},
         {title: 'Our services' , subtitle: 'Please select which service you are interested in.',  id: 'checkbox'},
         {title: 'What’s your project budget?' , subtitle: 'Please select the project budget range you have in mind.',  id: 'radio'},
         {title: 'Submit your quote request' , subtitle: 'Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours.',  id: 'submit'},
       ],
-      // services: [
-      //   {
-      //     label: 'Development',
-      //     id: 'development',
-      //     checked: false,
-      //   },
-      //   {
-      //     label: 'Marketing',
-      //     id: 'marketing',
-      //     checked: false,
-      //   },
-      //   {
-      //     label: 'Web Design',
-      //     id: 'web-design',
-      //     checked: false,
-      //   },
-      //   { label: 'Other', id: 'other', checked: false },
-      // ],
-      // servicesChecked: [],
-      // prices: [
-      // {quantity: '$5.000 - $10.000', id: 'p1'},
-      // {quantity: '$10.000 - $20.000', id: 'p2'},
-      // {quantity: '$20.000 - $50.000', id: 'p3'},
-      // {quantity: '$50.000 +', id: 'p4'},
-      // ],
     selectedPriceValue: '' 
      
     }
   },
   methods: {
-    // setCheckboxValue: function (value, arr) {
-    //   const index = arr.indexOf(value)
-    //   if (index !== -1) {
-    //     arr.splice(index, 1)
-    //   } else {
-    //     arr.push(value)
-    //   }
-    //   console.log('выполнено')
-    //   return arr
-    // },
-    // selectedPrice: function (value, oldValue) {
-    //   if(typeof value === 'String') {
-    //     oldValue = value
-    //     console.log(oldValue, 'TYT')
-    //   }
-     
-    // }
+
   },
 }
 </script>
@@ -90,61 +44,6 @@ export default {
       </div>
 
       <Form :formInfo="formInfo" >
-        <!-- <component :is="currentTab" class="tab"></component> -->
-  <!-- <div v-for="price in prices" :key="price.id">
-            <Radio
-            :value="price.quantity"
-            :label="price.quantity"
-            :id="price.id"
-            name="price"
-            v-model:oldValue="selectedPriceValue"
-            @update="selectedPrice"
-            />
-</div>
- 
-          <CheckboxMultiple
-          name="servicesN"
-          v-model:value="servicesChecked"
-          :services="services"
-          @checkbox="setCheckboxValue"
-        />
-  
-    
-
-          <Inputs
-          v-model:enterText.trim="name"
-          name="Name"
-          placeholder="John Carter"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/user.svg" alt="user" />
-        </Inputs>
-      <Inputs
-          v-model:enterText.trim="email"
-          name="Email"
-          placeholder="Email address"
-          inputForm
-        >
-          <img width="20" height="25" src="/assets/svg/inputs/email.svg" alt="email" />
-        </Inputs>
-        <Inputs
-          v-model:enterText.trim="phone"
-          name="Phone Number"
-          placeholder="(123) 456 - 7890"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/phone.svg" alt="phone" />
-        </Inputs>
-        <Inputs
-          v-model:enterText.trim="company"
-          name="Company"
-          placeholder="Company name"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/company.svg" alt="company" />
-        </Inputs>  -->
-
-   
       </Form>
     </div>
   </div>

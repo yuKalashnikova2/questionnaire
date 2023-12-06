@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <label :class="['radio checkbox']">
+  <label class="checkbox radio">
     <div
       :class="['radio__input', oldValue == value ? 'radio__input_checked' : '']"
     >
@@ -50,7 +50,7 @@ export default {
       <div class="radio__input_checked__inside"></div>
     </div>
 
-    <div class="radio__label">{{ label }} {{ value }} nen</div>
+    <div class="radio__label">{{ label }}</div>
   </label>
 </template>
 
@@ -58,7 +58,7 @@ export default {
 .radio {
   display: flex;
   gap: 12px;
-  padding: 45px 0 45px 32px;
+  padding: 45px 0 45px 32px !important;
   &__input {
     flex-shrink: 0;
     width: 24px;

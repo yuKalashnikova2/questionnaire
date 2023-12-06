@@ -18,7 +18,6 @@ export default {
   },
   data() {
     return {
-
       name: '',
       email: '',
       phone: '',
@@ -50,13 +49,13 @@ export default {
         { label: 'Other', id: 'other', checked: false },
       ],
       servicesChecked: [],
-         prices: [
-      {quantity: '$5.000 - $10.000', id: 'p1'},
-      {quantity: '$10.000 - $20.000', id: 'p2'},
-      {quantity: '$20.000 - $50.000', id: 'p3'},
-      {quantity: '$50.000 +', id: 'p4'},
+      prices: [
+        { quantity: '$5.000 - $10.000', id: 'p1' },
+        { quantity: '$10.000 - $20.000', id: 'p2' },
+        { quantity: '$20.000 - $50.000', id: 'p3' },
+        { quantity: '$50.000 +', id: 'p4' },
       ],
-    selectedPriceValue: '' 
+      selectedPriceValue: '',
     }
   },
 
@@ -64,14 +63,16 @@ export default {
     nextStep() {
       this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
-
     },
     previousStep() {
       this.stepsProgressive.currentStep--
-      if(this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '1' && this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '4') {
+      if (
+        this.stepsProgressive.steps[this.stepsProgressive.currentStep] !==
+          '1' &&
+        this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '4'
+      ) {
         this.stepsProgressive.steps[this.stepsProgressive.currentStep] = false
       }
-      
     },
     styleColor() {
       index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
@@ -87,12 +88,11 @@ export default {
       return arr
     },
     selectedPrice: function (value, oldValue) {
-      if(typeof value === 'String') {
+      if (typeof value === 'String') {
         oldValue = value
         console.log(oldValue, 'TYT')
       }
-     
-    }
+    },
   },
 }
 </script>
@@ -128,85 +128,142 @@ export default {
           'form-block__contact-details',
           info.id === 'submit' ? 'form-block__contact-details_text-center' : '',
         ]"
-         v-for="info in formInfo" :key="info.id"
+        v-for="info in formInfo"
+        :key="info.id"
       >
-        <img
-          class="form-block__contact-details__img"
-          src="/assets/svg/form-submit.svg"
-          alt="submit"
-          v-if="info.id === 'submit'"
-        />
-        <h2 class="form-block__contact-details__title">
-          {{info.title}}
-        </h2>
-        <span class="form-block__contact-details__text">{{info.subtitle}}</span>
-        <div class="button-form__submit" v-if="info.id === 'submit' && this.stepsProgressive.currentStep === '4'">
-          <Button label="Submit" />
+        <div v-if="info.id === 'submit'">
+          <img
+            class="form-block__contact-details__img"
+            src="/assets/svg/form-submit.svg"
+            alt="submit"
+          />
+          <h2 class="form-block__contact-details__title">
+            {{ info.title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            info.subtitle
+          }}</span>
+          <div class="button-form__submit">
+            <Button label="Submit" />
+          </div>
         </div>
 
-        <div class="form-block__slots">
-          <div v-if="info.id === 'input'">
+        <!-- <div class="form-block__slots"> -->
+
+        <!-- inputs compon -->
+        <div v-if="info.id === 'input'">
+          <h2 class="form-block__contact-details__title">
+            {{ info.title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            info.subtitle
+          }}</span>
+          <div class="form-block__slots">
             <Inputs
-          v-model:enterText.trim="name"
-          name="Name"
-          placeholder="John Carter"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/user.svg" alt="user" />
-        </Inputs>
-      <Inputs
-          v-model:enterText.trim="email"
-          name="Email"
-          placeholder="Email address"
-          inputForm
-        >
-          <img width="20" height="25" src="/assets/svg/inputs/email.svg" alt="email" />
-        </Inputs>
-        <Inputs
-          v-model:enterText.trim="phone"
-          name="Phone Number"
-          placeholder="(123) 456 - 7890"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/phone.svg" alt="phone" />
-        </Inputs>
-        <Inputs
-          v-model:enterText.trim="company"
-          name="Company"
-          placeholder="Company name"
-          inputForm
-        >
-          <img width="20" height="25"  src="/assets/svg/inputs/company.svg" alt="company" />
-        </Inputs>
+            v-model:enterText.trim="name"
+            name="Name"
+            placeholder="John Carter"
+            inputForm
+          >
+            <img
+              width="20"
+              height="25"
+              src="/assets/svg/inputs/user.svg"
+              alt="user"
+            />
+          </Inputs>
+          <Inputs
+            v-model:enterText.trim="email"
+            name="Email"
+            placeholder="Email address"
+            inputForm
+          >
+            <img
+              width="20"
+              height="25"
+              src="/assets/svg/inputs/email.svg"
+              alt="email"
+            />
+          </Inputs>
+          <Inputs
+            v-model:enterText.trim="phone"
+            name="Phone Number"
+            placeholder="(123) 456 - 7890"
+            inputForm
+          >
+            <img
+              width="20"
+              height="25"
+              src="/assets/svg/inputs/phone.svg"
+              alt="phone"
+            />
+          </Inputs>
+          <Inputs
+            v-model:enterText.trim="company"
+            name="Company"
+            placeholder="Company name"
+            inputForm
+          >
+            <img
+              width="20"
+              height="25"
+              src="/assets/svg/inputs/company.svg"
+              alt="company"
+            />
+          </Inputs>
+          </div>
+     
+        </div>
+
+        <!-- checkbox component -->
+        <div v-if="info.id === 'checkbox'">
+          <h2 class="form-block__contact-details__title">
+            {{ info.title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            info.subtitle
+          }}</span>
+
+          <div class="form-block__slots">
+            <CheckboxMultiple
+            name="servicesN"
+            v-model:value="servicesChecked"
+            :services="services"
+            @checkbox="setCheckboxValue"
+          />
           </div>
        
-          <CheckboxMultiple
-          v-if="info.id === 'checkbox' "
-          name="servicesN"
-          v-model:value="servicesChecked"
-          :services="services"
-          @checkbox="setCheckboxValue"
-           />
-           <div v-for="price in prices" :key="price.id"
-            v-if="info.id === 'radio'">
+        </div>
+
+        <!-- radio comp -->
+        <div v-if="info.id === 'radio'">
+          <h2 class="form-block__contact-details__title">
+            {{ info.title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            info.subtitle
+          }}</span>
+
+          <div class="form-block__slots">
+            <div v-for="price in prices" :key="price.id">
             <Radio
-            :value="price.quantity"
-            :label="price.quantity"
-            :id="price.id"
-            name="price"
-            v-model:oldValue="selectedPriceValue"
-            @update="selectedPrice" />
+              :value="price.quantity"
+              :label="price.quantity"
+              :id="price.id"
+              name="price"
+              v-model:oldValue="selectedPriceValue"
+              @update="selectedPrice"
+            />
           </div>
-       
+          </div>
+        
         </div>
       </div>
     </div>
 
     <div class="form-buttons">
       <Button label="Previous step" lightButton @click="previousStep" />
-      <Button label="Next step"
-       @click="nextStep" 
-      />
+      <Button label="Next step" @click="nextStep" />
     </div>
   </div>
 </template>
@@ -288,8 +345,8 @@ export default {
         line-height: 35px;
       }
       &__text {
-        // margin: 7.5px 0 40px;
-        // padding-bottom: 40px ;
+        display: block;
+        margin-bottom: 40px ;
         color: #6f6c90;
         font-feature-settings: 'clig' off, 'liga' off;
         font-size: 18px;
