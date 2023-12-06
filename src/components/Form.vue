@@ -25,7 +25,13 @@ export default {
       this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
     },
-    previousStep() {},
+    previousStep() {
+      this.stepsProgressive.currentStep--
+      if(this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '1' && this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '4') {
+        this.stepsProgressive.steps[this.stepsProgressive.currentStep] = false
+      }
+      
+    },
     styleColor() {
       index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
     },
@@ -86,8 +92,8 @@ export default {
     </div>
 
     <div class="form-buttons">
-      <Button label="Previous step" lightButton />
-      <Button label="Next step" />
+      <Button label="Previous step" lightButton @click="previousStep" />
+      <Button label="Next step" @click="nextStep" />
     </div>
   </div>
 </template>

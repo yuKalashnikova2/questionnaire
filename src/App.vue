@@ -90,7 +90,7 @@ export default {
       </div>
 
       <Form :formInfo="formInfo">
-        <div v-for="price in prices" :key="price.id">
+        <!-- <div v-for="price in prices" :key="price.id">
             <Radio
             :value="price.quantity"
             :label="price.quantity"
@@ -99,7 +99,7 @@ export default {
             v-model:oldValue="selectedPriceValue"
             @update="selectedPrice"
             />
-        </div>
+        </div> -->
         <!-- <CheckboxMultiple
           name="servicesN"
           v-model:value="servicesChecked"
