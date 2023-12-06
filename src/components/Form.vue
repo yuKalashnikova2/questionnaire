@@ -4,6 +4,12 @@ export default {
   components: {
     Button,
   },
+  props: {
+    formInfo: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       stepsProgressive: {
@@ -28,7 +34,7 @@ export default {
 </script>
 <template>
   <div class="form">
-    <div class="form-block">
+    <div class="form-block" v-for="info in formInfo" :key="info.id">
       <ul class="form-block__steps-list">
         <li
           class="form-block__steps-list__step"
@@ -53,11 +59,26 @@ export default {
         </li>
       </ul>
 
-      <div class="form-block__contact-details">
-        <h2 class="form-block__contact-details__title">Contact details</h2>
-        <span class="form-block__contact-details__text"
-          >Lorem ipsum dolor sit amet consectetur adipisc.</span
-        >
+      <div
+        :class="[
+          'form-block__contact-details',
+          info.id === 'submit' ? 'form-block__contact-details_text-center' : '',
+        ]"
+      >
+        <img
+          class="form-block__contact-details__img"
+          src="/assets/svg/form-submit.svg"
+          alt="submit"
+          v-if="info.id === 'submit'"
+        />
+        <h2 class="form-block__contact-details__title">{{ info.title }}</h2>
+        <span class="form-block__contact-details__text">{{
+          info.subtitle
+        }}</span>
+        <div class="button-form__submit" v-if="info.id === 'submit'">
+          <Button label="Submit" />
+        </div>
+
         <div class="form-block__slots">
           <slot></slot>
         </div>
@@ -129,8 +150,16 @@ export default {
     }
     &__contact-details {
       margin-top: 64px;
-      // margin-bottom: 40px;
       text-align: start;
+      &_text-center {
+        text-align: center;
+      }
+      &__img {
+        width: 157px;
+        height: 143px;
+        padding-bottom: 18px;
+        margin: auto;
+      }
       &__title {
         color: #170f49;
         font-feature-settings: 'clig' off, 'liga' off;
@@ -168,5 +197,8 @@ export default {
 .disabled {
   background-color: #eff0f6;
   color: #6f6c90;
+}
+.button-form__submit {
+  padding-top: 12px;
 }
 </style>

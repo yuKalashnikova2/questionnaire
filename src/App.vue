@@ -22,6 +22,12 @@ export default {
       phone: '',
       company: '',
       inputForm: false,
+      formInfo: [
+        {title: 'Contact details' , subtitle: 'Lorem ipsum dolor sit amet consectetur adipisc.', id: 'input'},
+        {title: 'Our services' , subtitle: 'Please select which service you are interested in.',  id: 'checkbox'},
+        {title: 'What’s your project budget?' , subtitle: 'Please select the project budget range you have in mind.',  id: 'radio'},
+        {title: 'Submit your quote request' , subtitle: 'Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours.',  id: 'submit'},
+      ],
       services: [
         {
           label: 'Development',
@@ -83,7 +89,7 @@ export default {
         free to add as much detail as needed.
       </div>
 
-      <Form>
+      <Form :formInfo="formInfo">
         <div v-for="price in prices" :key="price.id">
             <Radio
             :value="price.quantity"
