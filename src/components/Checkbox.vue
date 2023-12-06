@@ -20,7 +20,11 @@ export default {
 <template>
   <label :class="['checkbox', checked ? 'checkbox_checked' : '']">
     <div class="checkbox__input">
-      <input type="checkbox" :id="id" :checked="checked" />
+      <input
+        type="checkbox"
+        :id="id"
+        :checked="checked"
+      />
       <img :src="'/assets/svg/checkbox/' + id + '.svg'" :alt="id" />
     </div>
 
@@ -28,7 +32,7 @@ export default {
   </label>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .checkbox {
   display: flex;
   align-items: center;

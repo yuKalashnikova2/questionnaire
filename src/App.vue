@@ -4,13 +4,16 @@ import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
 import Inputs from './components/Inputs.vue'
 import CheckboxMultiple from './components/CheckboxMultiple.vue'
+import Radio from './components/Radio.vue'
 export default {
   components: {
     Header,
     Form,
     Footer,
     Inputs,
+    Radio,
     CheckboxMultiple,
+  
   },
   data() {
     return {
@@ -38,6 +41,14 @@ export default {
         { label: 'Other', id: 'other', checked: false },
       ],
       servicesChecked: [],
+      prices: [
+      {quantity: '$5.000 - $10.000', id: 'p1'},
+      {quantity: '$10.000 - $20.000', id: 'p2'},
+      {quantity: '$20.000 - $50.000', id: 'p3'},
+      {quantity: '$50.000 +', id: 'p4'},
+      ],
+    selectedPriceValue: '' 
+     
     }
   },
   methods: {
@@ -51,6 +62,13 @@ export default {
       console.log('выполнено')
       return arr
     },
+    selectedPrice: function (value, oldValue) {
+      if(typeof value === 'String') {
+        oldValue = value
+        console.log(oldValue, 'TYT')
+      }
+     
+    }
   },
 }
 </script>
@@ -66,12 +84,22 @@ export default {
       </div>
 
       <Form>
-        <CheckboxMultiple
+        <div v-for="price in prices" :key="price.id">
+            <Radio
+            :value="price.quantity"
+            :label="price.quantity"
+            :id="price.id"
+            name="price"
+            v-model:oldValue="selectedPriceValue"
+            @update="selectedPrice"
+            />
+        </div>
+        <!-- <CheckboxMultiple
           name="servicesN"
           v-model:value="servicesChecked"
           :services="services"
           @checkbox="setCheckboxValue"
-        />
+        /> -->
         <!-- <Inputs
           v-model:enterText.trim="name"
           name="Name"
