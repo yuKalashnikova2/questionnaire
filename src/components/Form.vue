@@ -292,7 +292,7 @@ export default {
           </div>
         </div>
       </div>
-      {{ stepsProgressive.currentStep }}
+      {{ stepsProgressive.currentStep }} тут
     </div>
     <div
       :class="[
@@ -324,7 +324,6 @@ export default {
     background: var(--neutral-100, #fff);
     box-shadow: 0px 5px 16px 0px rgba(8, 15, 52, 0.06);
     width: 100%;
-    //   height: 100vh;
     padding: 32px 46px 80px 46px;
     margin-bottom: 32px;
     &__steps-list {

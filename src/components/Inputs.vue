@@ -25,7 +25,6 @@ export default {
 
 <template>
   <div :class="['input', inputForm  ? 'input_padding-top' :'' ]">
-    {{ enterText }}
     <label class="input__label" :for="name">{{ name }}</label>
     <div class="input__enter">
       <input
