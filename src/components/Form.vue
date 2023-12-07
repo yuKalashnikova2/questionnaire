@@ -56,15 +56,34 @@ export default {
         { quantity: '$50.000 +', id: 'p4' },
       ],
       selectedPriceValue: '',
+      isSubmit: false,
+      isInput: false,
+      isRadio: false,
+      isCheckbox: false,
+      submitDateObj: {}
     }
   },
 
   methods: {
-    nextStep() {
+    nextStep(atr) {
+      if(this.stepsProgressive.currentStep <= 3)
       this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
+      if (atr === 'input' && stepsProgressive.currentStep === 1) {
+        isSubmit = true
+      }
+      if (atr === 'checkbox' && stepsProgressive.currentStep === 2) {
+        isInput = true
+      }
+      if (atr === 'radio' && stepsProgressive.currentStep === 3) {
+        isCheckbox = true
+      }
+      if (atr === 'submit' && stepsProgressive.currentStep === 4) {
+        isCheckbox = true
+      }
     },
     previousStep() {
+      if(this.stepsProgressive.currentStep )
       this.stepsProgressive.currentStep--
       if (
         this.stepsProgressive.steps[this.stepsProgressive.currentStep] !==
@@ -93,6 +112,9 @@ export default {
         console.log(oldValue, 'TYT')
       }
     },
+    submitDate: function (submitDateObj) {
+      localStorage.setItem('submitDateObj', JSON.stringify(submitDateObj));
+    }
   },
 }
 </script>
@@ -126,145 +148,152 @@ export default {
       <div
         :class="[
           'form-block__contact-details',
-          info.id === 'submit' ? 'form-block__contact-details_text-center' : '',
+          formInfo.id === 'submit'
+            ? 'form-block__contact-details_text-center'
+            : '',
         ]"
-        v-for="info in formInfo"
-        :key="info.id"
       >
-        <div v-if="info.id === 'submit'">
+       
+
+        <!-- inputs compon -->
+        <div v-if="1 === stepsProgressive.currentStep">
+          <h2 class="form-block__contact-details__title">
+            {{ formInfo[0].title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            formInfo[0].subtitle
+          }}</span>
+          <div class="form-block__slots">
+            <Inputs
+              v-model:enterText.trim="name"
+              name="Name"
+              placeholder="John Carter"
+              inputForm
+            >
+              <img
+                width="20"
+                height="25"
+                src="/assets/svg/inputs/user.svg"
+                alt="user"
+              />
+            </Inputs>
+            <Inputs
+              v-model:enterText.trim="email"
+              name="Email"
+              placeholder="Email address"
+              inputForm
+            >
+              <img
+                width="20"
+                height="25"
+                src="/assets/svg/inputs/email.svg"
+                alt="email"
+              />
+            </Inputs>
+            <Inputs
+              v-model:enterText.trim="phone"
+              name="Phone Number"
+              placeholder="(123) 456 - 7890"
+              inputForm
+            >
+              <img
+                width="20"
+                height="25"
+                src="/assets/svg/inputs/phone.svg"
+                alt="phone"
+              />
+            </Inputs>
+            <Inputs
+              v-model:enterText.trim="company"
+              name="Company"
+              placeholder="Company name"
+              inputForm
+            >
+              <img
+                width="20"
+                height="25"
+                src="/assets/svg/inputs/company.svg"
+                alt="company"
+              />
+            </Inputs>
+          </div>
+        </div>
+
+        <!-- checkbox component -->
+        <div v-if="2 === stepsProgressive.currentStep">
+          <h2 class="form-block__contact-details__title">
+            {{ formInfo[1].title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            formInfo[1].subtitle
+          }}</span>
+
+          <div class="form-block__slots">
+            <CheckboxMultiple
+              name="servicesN"
+              v-model:value="servicesChecked"
+              :services="services"
+              @checkbox="setCheckboxValue"
+            />
+          </div>
+        </div>
+
+        <!-- radio comp -->
+        <div v-if="3 === stepsProgressive.currentStep">
+          <h2 class="form-block__contact-details__title">
+            {{ formInfo[2].title }}
+          </h2>
+          <span class="form-block__contact-details__text">{{
+            formInfo[2].subtitle
+          }}</span>
+
+          <div class="form-block__slots">
+            <div v-for="price in prices" :key="price.id">
+              <Radio
+                :value="price.quantity"
+                :label="price.quantity"
+                :id="price.id"
+                name="price"
+                v-model:oldValue="selectedPriceValue"
+                @update="selectedPrice"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- submit -->
+        <div v-if="4 === stepsProgressive.currentStep">
           <img
             class="form-block__contact-details__img"
             src="/assets/svg/form-submit.svg"
             alt="submit"
           />
-          <h2 class="form-block__contact-details__title">
-            {{ info.title }}
+          <h2 class="form-block__contact-details__title form-block__contact-details_text-center">
+            {{ formInfo[3].title }}
           </h2>
-          <span class="form-block__contact-details__text">{{
-            info.subtitle
+          <span class="form-block__contact-details__text form-block__contact-details_text-center">{{
+            formInfo[3].subtitle
           }}</span>
           <div class="button-form__submit">
-            <Button label="Submit" />
+            <Button label="Submit" @click="submitDate" />
           </div>
         </div>
 
-        <!-- <div class="form-block__slots"> -->
-
-        <!-- inputs compon -->
-        <div v-if="info.id === 'input'">
-          <h2 class="form-block__contact-details__title">
-            {{ info.title }}
-          </h2>
-          <span class="form-block__contact-details__text">{{
-            info.subtitle
-          }}</span>
-          <div class="form-block__slots">
-            <Inputs
-            v-model:enterText.trim="name"
-            name="Name"
-            placeholder="John Carter"
-            inputForm
-          >
-            <img
-              width="20"
-              height="25"
-              src="/assets/svg/inputs/user.svg"
-              alt="user"
-            />
-          </Inputs>
-          <Inputs
-            v-model:enterText.trim="email"
-            name="Email"
-            placeholder="Email address"
-            inputForm
-          >
-            <img
-              width="20"
-              height="25"
-              src="/assets/svg/inputs/email.svg"
-              alt="email"
-            />
-          </Inputs>
-          <Inputs
-            v-model:enterText.trim="phone"
-            name="Phone Number"
-            placeholder="(123) 456 - 7890"
-            inputForm
-          >
-            <img
-              width="20"
-              height="25"
-              src="/assets/svg/inputs/phone.svg"
-              alt="phone"
-            />
-          </Inputs>
-          <Inputs
-            v-model:enterText.trim="company"
-            name="Company"
-            placeholder="Company name"
-            inputForm
-          >
-            <img
-              width="20"
-              height="25"
-              src="/assets/svg/inputs/company.svg"
-              alt="company"
-            />
-          </Inputs>
-          </div>
-     
-        </div>
-
-        <!-- checkbox component -->
-        <div v-if="info.id === 'checkbox'">
-          <h2 class="form-block__contact-details__title">
-            {{ info.title }}
-          </h2>
-          <span class="form-block__contact-details__text">{{
-            info.subtitle
-          }}</span>
-
-          <div class="form-block__slots">
-            <CheckboxMultiple
-            name="servicesN"
-            v-model:value="servicesChecked"
-            :services="services"
-            @checkbox="setCheckboxValue"
-          />
-          </div>
-       
-        </div>
-
-        <!-- radio comp -->
-        <div v-if="info.id === 'radio'">
-          <h2 class="form-block__contact-details__title">
-            {{ info.title }}
-          </h2>
-          <span class="form-block__contact-details__text">{{
-            info.subtitle
-          }}</span>
-
-          <div class="form-block__slots">
-            <div v-for="price in prices" :key="price.id">
-            <Radio
-              :value="price.quantity"
-              :label="price.quantity"
-              :id="price.id"
-              name="price"
-              v-model:oldValue="selectedPriceValue"
-              @update="selectedPrice"
-            />
-          </div>
-          </div>
-        
-        </div>
       </div>
+      {{ stepsProgressive.currentStep }}
+     
     </div>
+    <div :class="['form-buttons', stepsProgressive.currentStep > 1 ? '' : 'form-buttons_none']">
 
-    <div class="form-buttons">
-      <Button label="Previous step" lightButton @click="previousStep" />
-      <Button label="Next step" @click="nextStep" />
-    </div>
+        <Button
+          label="Previous step"
+          lightButton
+          @click="previousStep(formInfo.id)"
+          v-if="stepsProgressive.currentStep > 1"
+        />
+        <div></div>
+        <Button  label="Next step" @click="nextStep" v-if="stepsProgressive.currentStep <= 3" />
+      </div>
   </div>
 </template>
 
@@ -346,7 +375,7 @@ export default {
       }
       &__text {
         display: block;
-        margin-bottom: 40px ;
+        margin-bottom: 40px;
         color: #6f6c90;
         font-feature-settings: 'clig' off, 'liga' off;
         font-size: 18px;
@@ -367,6 +396,12 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 100px;
+ 
+    &_none {
+      &:first-child {
+        display: none;
+      }
+    }
   }
 }
 
@@ -376,5 +411,6 @@ export default {
 }
 .button-form__submit {
   padding-top: 12px;
+  text-align: center;
 }
 </style>

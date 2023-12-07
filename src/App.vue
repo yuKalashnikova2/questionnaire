@@ -13,23 +13,40 @@ export default {
     Inputs,
     Radio,
     CheckboxMultiple,
-  
   },
   data() {
     return {
       formInfo: [
-        {title: 'Contact details' , subtitle: 'Lorem ipsum dolor sit amet consectetur adipisc.', id: 'input'},
-        {title: 'Our services' , subtitle: 'Please select which service you are interested in.',  id: 'checkbox'},
-        {title: 'What’s your project budget?' , subtitle: 'Please select the project budget range you have in mind.',  id: 'radio'},
-        {title: 'Submit your quote request' , subtitle: 'Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours.',  id: 'submit'},
+        {
+          title: 'Contact details',
+          subtitle: 'Lorem ipsum dolor sit amet consectetur adipisc.',
+          id: 'input',
+          step: 1,
+        },
+        {
+          title: 'Our services',
+          subtitle: 'Please select which service you are interested in.',
+          id: 'checkbox',
+          step: 2,
+        },
+        {
+          title: 'What’s your project budget?',
+          subtitle: 'Please select the project budget range you have in mind.',
+          id: 'radio',
+          step: 3,
+        },
+        {
+          title: 'Submit your quote request',
+          subtitle:
+            'Please review all the information you previously typed in the past steps, and if all is okay, submit your message to receive a project quote in 24 - 48 hours.',
+          id: 'submit',
+          step: 4,
+        },
       ],
-    selectedPriceValue: '' 
-     
+      selectedPriceValue: '',
     }
   },
-  methods: {
-
-  },
+  methods: {},
 }
 </script>
 
@@ -43,7 +60,8 @@ export default {
         free to add as much detail as needed.
       </div>
 
-      <Form :formInfo="formInfo" >
+      <Form :formInfo="formInfo">
+
       </Form>
     </div>
   </div>
