@@ -26,7 +26,7 @@ export default {
     </div>
 
     <div class="footer__subscribe">
-      <Inputs placeholder="Enter your email">
+      <Inputs placeholder="Enter your email" isWidth>
         <Button label="Subscribe" smallSize />
     </Inputs>
   
@@ -40,6 +40,9 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 57px 0;
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
 
   &__copyright {
  

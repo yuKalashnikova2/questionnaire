@@ -50,6 +50,10 @@ export default {
   line-height: 20px;
   border: 1px solid transparent;
   cursor: pointer;
+  @media (max-width: 575px) {
+    width: 100%;
+
+  }
   &_checked {
     border: 1px solid var(--primary-color-1, #4a3aff);
   }

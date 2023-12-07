@@ -59,6 +59,9 @@ export default {
   display: flex;
   gap: 12px;
   padding: 45px 0 45px 32px !important;
+  @media (max-width: 767px) {
+    padding: 10px !important;
+  }
   &__input {
     flex-shrink: 0;
     width: 24px;

@@ -77,6 +77,9 @@ export default {
 .container {
   max-width: 1242px;
   margin: 0 100px;
+  @media (max-width: 575px) {
+    margin: 0 10px;
+  }
 }
 .preview {
   margin: auto;

@@ -66,20 +66,23 @@ export default {
 
   methods: {
     nextStep(atr) {
+      // if(this.stepsProgressive.steps[key] == 1) {
+      //   this.stepsProgressive.steps[key] = true
+      // }
       if (this.stepsProgressive.currentStep <= 3)
-        this.stepsProgressive.currentStep++
+      this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
       if (atr === 'input' && stepsProgressive.currentStep === 1) {
-        isSubmit = true
+        this.isSubmit = true
       }
       if (atr === 'checkbox' && stepsProgressive.currentStep === 2) {
-        isInput = true
+        this.isInput = true
       }
       if (atr === 'radio' && stepsProgressive.currentStep === 3) {
-        isCheckbox = true
+        this.isCheckbox = true
       }
       if (atr === 'submit' && stepsProgressive.currentStep === 4) {
-        isCheckbox = true
+        this.isCheckbox = true
       }
     },
     previousStep() {
@@ -137,7 +140,8 @@ export default {
           <div
             :class="[
               'form-block__steps-list__step-bubble',
-              stepsProgressive.steps[index + 1] ? '' : 'disabled',
+              // stepsProgressive.steps[index+1] ? '' : 'disabled',
+              index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
             ]"
           >
             {{ step }}
@@ -146,7 +150,8 @@ export default {
             <div
               :class="[
                 'form-block__steps-list__step-line-fill',
-                stepsProgressive.steps[index + 1] ? '' : 'disabled',
+                // stepsProgressive.steps[index + 1] ? '' : 'disabled',
+                index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
               ]"
             ></div>
           </div>
@@ -269,7 +274,6 @@ export default {
 
         <!-- submit -->
         <div v-if="4 === stepsProgressive.currentStep">
-          {{ submitDateObj }}
           <img
             class="form-block__contact-details__img"
             src="/assets/svg/form-submit.svg"
@@ -287,7 +291,7 @@ export default {
           <div class="button-form__submit">
             <Button
               label="Submit"
-              @click="submitDate({ name: 'Los', lastnameL: 'nagsh' })"
+              @click="submitDate()"
             />
           </div>
         </div>
@@ -332,6 +336,9 @@ export default {
 
       border-bottom: 1px solid #d9dbe9;
       padding-bottom: 33px;
+      @media(max-width: 575px) {
+        display: none;
+      }
       &__step {
         display: flex;
         align-items: center;
@@ -359,6 +366,9 @@ export default {
           height: 6px;
           border-radius: 40px;
           margin: 0 18px;
+          @media (max-width: 767px) {
+            width: 10px;
+          }
 
           &-fill {
             background-color: #4a3aff;
@@ -414,6 +424,10 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 100px;
+    @media (max-width: 575px) {
+      flex-direction: column;
+      gap: 10px;
+    }
 
     &_none {
       &:first-child {

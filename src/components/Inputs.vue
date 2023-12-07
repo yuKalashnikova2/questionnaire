@@ -17,7 +17,14 @@ export default {
         type: Boolean,
         required: false
     },
-    enterText: String,
+    enterText: {
+      type: String, 
+      required: true
+    },
+    isWidth: {
+      type: Boolean, 
+      required: false
+    }
   },
   emits: ['update:enterText'],
 }
@@ -26,7 +33,7 @@ export default {
 <template>
   <div :class="['input', inputForm  ? 'input_padding-top' :'' ]">
     <label class="input__label" :for="name">{{ name }}</label>
-    <div class="input__enter">
+    <div :class="['input__enter', isWidth ? 'input__enter_width' : '']">
       <input
         type="text"
         :name="name"
@@ -66,6 +73,12 @@ export default {
     font-size: 18px;
     font-weight: 400;
     line-height: 20px;
+    &_width {
+      min-width: 500px;
+      @media (max-width: 575px) {
+        min-width: 100%;
+      }
+    }
   }
 }
 </style>
