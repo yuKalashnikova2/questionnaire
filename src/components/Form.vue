@@ -60,14 +60,14 @@ export default {
       isInput: false,
       isRadio: false,
       isCheckbox: false,
-      submitDateObj: {}
+      submitObjData: {},
     }
   },
 
   methods: {
     nextStep(atr) {
-      if(this.stepsProgressive.currentStep <= 3)
-      this.stepsProgressive.currentStep++
+      if (this.stepsProgressive.currentStep <= 3)
+        this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
       if (atr === 'input' && stepsProgressive.currentStep === 1) {
         isSubmit = true
@@ -83,8 +83,7 @@ export default {
       }
     },
     previousStep() {
-      if(this.stepsProgressive.currentStep )
-      this.stepsProgressive.currentStep--
+      if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
       if (
         this.stepsProgressive.steps[this.stepsProgressive.currentStep] !==
           '1' &&
@@ -112,9 +111,18 @@ export default {
         console.log(oldValue, 'TYT')
       }
     },
-    submitDate: function (submitDateObj) {
-      localStorage.setItem('submitDateObj', JSON.stringify(submitDateObj));
-    }
+    submitDate: function () {
+      this.submitObjData = {
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        company: this.company,
+        radio: this.selectedPriceValue,
+        check: this.servicesChecked,
+      }
+      localStorage.setItem('submitObjData', JSON.stringify(this.submitObjData))
+      console.log('prosto', this.submitObjData)
+    },
   },
 }
 </script>
@@ -153,8 +161,6 @@ export default {
             : '',
         ]"
       >
-       
-
         <!-- inputs compon -->
         <div v-if="1 === stepsProgressive.currentStep">
           <h2 class="form-block__contact-details__title">
@@ -263,37 +269,50 @@ export default {
 
         <!-- submit -->
         <div v-if="4 === stepsProgressive.currentStep">
+          {{ submitDateObj }}
           <img
             class="form-block__contact-details__img"
             src="/assets/svg/form-submit.svg"
             alt="submit"
           />
-          <h2 class="form-block__contact-details__title form-block__contact-details_text-center">
+          <h2
+            class="form-block__contact-details__title form-block__contact-details_text-center"
+          >
             {{ formInfo[3].title }}
           </h2>
-          <span class="form-block__contact-details__text form-block__contact-details_text-center">{{
-            formInfo[3].subtitle
-          }}</span>
+          <span
+            class="form-block__contact-details__text form-block__contact-details_text-center"
+            >{{ formInfo[3].subtitle }}</span
+          >
           <div class="button-form__submit">
-            <Button label="Submit" @click="submitDate" />
+            <Button
+              label="Submit"
+              @click="submitDate({ name: 'Los', lastnameL: 'nagsh' })"
+            />
           </div>
         </div>
-
       </div>
       {{ stepsProgressive.currentStep }}
-     
     </div>
-    <div :class="['form-buttons', stepsProgressive.currentStep > 1 ? '' : 'form-buttons_none']">
-
-        <Button
-          label="Previous step"
-          lightButton
-          @click="previousStep(formInfo.id)"
-          v-if="stepsProgressive.currentStep > 1"
-        />
-        <div></div>
-        <Button  label="Next step" @click="nextStep" v-if="stepsProgressive.currentStep <= 3" />
-      </div>
+    <div
+      :class="[
+        'form-buttons',
+        stepsProgressive.currentStep > 1 ? '' : 'form-buttons_none',
+      ]"
+    >
+      <Button
+        label="Previous step"
+        lightButton
+        @click="previousStep(formInfo.id)"
+        v-if="stepsProgressive.currentStep > 1"
+      />
+      <div></div>
+      <Button
+        label="Next step"
+        @click="nextStep"
+        v-if="stepsProgressive.currentStep <= 3"
+      />
+    </div>
   </div>
 </template>
 
@@ -396,7 +415,7 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-bottom: 100px;
- 
+
     &_none {
       &:first-child {
         display: none;
