@@ -68,7 +68,7 @@ export default {
         this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
       this.isActive = true
-      console.log('next step ЭТО')
+      console.log('next step')
     },
     previousStep() {
       if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
@@ -127,9 +127,9 @@ export default {
                 : 'disabled',
             ]"
           >
-            {{ index + 1 == this.stepsProgressive.currentStep }}
-            {{ index + 1 >= this.stepsProgressive.currentStep }}
+   
             {{ step }}
+            {{ stepsProgressive.currentStep }}
           </div>
           <div class="form-block__steps-list__step-line">
             <div
