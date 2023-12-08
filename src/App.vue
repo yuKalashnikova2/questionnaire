@@ -53,6 +53,9 @@ export default {
 <template>
   <div class="container">
     <Header />
+
+
+
     <div class="preview">
       <h1 class="preview__title">Get a project quote</h1>
       <div class="preview__text">
@@ -110,4 +113,7 @@ export default {
 .gray-line {
   border-bottom: 1px solid #d9dbe9;
 }
+
+
+
 </style>

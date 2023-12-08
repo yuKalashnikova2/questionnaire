@@ -56,34 +56,19 @@ export default {
         { quantity: '$50.000 +', id: 'p4' },
       ],
       selectedPriceValue: '',
-      isSubmit: false,
-      isInput: false,
-      isRadio: false,
-      isCheckbox: false,
       submitObjData: {},
+      isActive: false,
+      isDisabled: false,
     }
   },
 
   methods: {
-    nextStep(atr) {
-      // if(this.stepsProgressive.steps[key] == 1) {
-      //   this.stepsProgressive.steps[key] = true
-      // }
+    nextStep() {
       if (this.stepsProgressive.currentStep <= 3)
-      this.stepsProgressive.currentStep++
+        this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
-      if (atr === 'input' && stepsProgressive.currentStep === 1) {
-        this.isSubmit = true
-      }
-      if (atr === 'checkbox' && stepsProgressive.currentStep === 2) {
-        this.isInput = true
-      }
-      if (atr === 'radio' && stepsProgressive.currentStep === 3) {
-        this.isCheckbox = true
-      }
-      if (atr === 'submit' && stepsProgressive.currentStep === 4) {
-        this.isCheckbox = true
-      }
+      this.isActive = true
+      console.log('next step ЭТО')
     },
     previousStep() {
       if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
@@ -94,9 +79,6 @@ export default {
       ) {
         this.stepsProgressive.steps[this.stepsProgressive.currentStep] = false
       }
-    },
-    styleColor() {
-      index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
     },
     setCheckboxValue: function (value, arr) {
       const index = arr.indexOf(value)
@@ -139,19 +121,23 @@ export default {
         >
           <div
             :class="[
-              'form-block__steps-list__step-bubble',
-              // stepsProgressive.steps[index+1] ? '' : 'disabled',
-              index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
+              'form-block__steps-list__step-bubble ',
+              index + 1 == this.stepsProgressive.currentStep && isActive
+                ? 'active'
+                : 'disabled',
             ]"
           >
+            {{ index + 1 == this.stepsProgressive.currentStep }}
+            {{ index + 1 >= this.stepsProgressive.currentStep }}
             {{ step }}
           </div>
           <div class="form-block__steps-list__step-line">
             <div
               :class="[
-                'form-block__steps-list__step-line-fill',
-                // stepsProgressive.steps[index + 1] ? '' : 'disabled',
-                index + 1 == this.stepsProgressive.currentStep ? '' : 'disabled'
+                'form-block__steps-list__step-line-fill ',
+                index + 1 == this.stepsProgressive.currentStep
+                  ? 'form-block__steps-list__step-line-fill_half'
+                  : 'disabled',
               ]"
             ></div>
           </div>
@@ -289,10 +275,7 @@ export default {
             >{{ formInfo[3].subtitle }}</span
           >
           <div class="button-form__submit">
-            <Button
-              label="Submit"
-              @click="submitDate()"
-            />
+            <Button label="Submit" @click="submitDate()" />
           </div>
         </div>
       </div>
@@ -313,7 +296,7 @@ export default {
       <div></div>
       <Button
         label="Next step"
-        @click="nextStep"
+        @click="nextStep()"
         v-if="stepsProgressive.currentStep <= 3"
       />
     </div>
@@ -336,7 +319,7 @@ export default {
 
       border-bottom: 1px solid #d9dbe9;
       padding-bottom: 33px;
-      @media(max-width: 575px) {
+      @media (max-width: 575px) {
         display: none;
       }
       &__step {
@@ -349,8 +332,8 @@ export default {
         &-bubble {
           width: 34px;
           height: 34px;
-          background-color: #4a3aff;
-          color: #fff;
+          // background-color: #4a3aff;
+          // color: #fff;
           border-radius: 100%;
           font-size: 16px;
           font-weight: 400;
@@ -416,8 +399,6 @@ export default {
       display: flex;
       flex-wrap: wrap;
       gap: 28px;
-      // margin: auto;
-      // margin-top: 40px;
     }
   }
   &-buttons {
@@ -440,6 +421,11 @@ export default {
 .disabled {
   background-color: #eff0f6;
   color: #6f6c90;
+}
+
+.active {
+  background-color: #4a3aff;
+  color: #fff;
 }
 .button-form__submit {
   padding-top: 12px;
