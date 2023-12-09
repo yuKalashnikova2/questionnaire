@@ -67,8 +67,10 @@ export default {
       if (this.stepsProgressive.currentStep <= 3)
         this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
-      this.isActive = true
-      console.log('next step')
+      console.log(
+        'next step',
+        (this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true)
+      )
     },
     previousStep() {
       if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
@@ -121,13 +123,13 @@ export default {
         >
           <div
             :class="[
-              'form-block__steps-list__step-bubble ',
-              index + 1 == this.stepsProgressive.currentStep && isActive
-                ? 'active'
-                : 'disabled',
+              'form-block__steps-list__step-bubble',
+              this.stepsProgressive.steps[this.stepsProgressive.currentStep] &&
+              index + 1 <= this.stepsProgressive.currentStep
+                ? ''
+                : '',
             ]"
           >
-   
             {{ step }}
             {{ stepsProgressive.currentStep }}
           </div>
@@ -137,7 +139,7 @@ export default {
                 'form-block__steps-list__step-line-fill ',
                 index + 1 == this.stepsProgressive.currentStep
                   ? 'form-block__steps-list__step-line-fill_half'
-                  : 'disabled',
+                  : '',
               ]"
             ></div>
           </div>
@@ -418,15 +420,12 @@ export default {
   }
 }
 
-.disabled {
-  background-color: #eff0f6;
-  color: #6f6c90;
-}
-
 .active {
   background-color: #4a3aff;
   color: #fff;
 }
+
+
 .button-form__submit {
   padding-top: 12px;
   text-align: center;
