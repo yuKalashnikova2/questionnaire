@@ -74,13 +74,6 @@ export default {
     },
     previousStep() {
       if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
-      if (
-        this.stepsProgressive.steps[this.stepsProgressive.currentStep] !==
-          '1' &&
-        this.stepsProgressive.steps[this.stepsProgressive.currentStep] !== '4'
-      ) {
-        this.stepsProgressive.steps[this.stepsProgressive.currentStep] = false
-      }
     },
     setCheckboxValue: function (value, arr) {
       const index = arr.indexOf(value)
@@ -118,27 +111,28 @@ export default {
     <div class="form-block">
       <ul class="form-block__steps-list">
         <li
-          class="form-block__steps-list__step"
+          class="form-block__steps-list-step"
           v-for="(step, index) in stepsProgressive.step"
         >
           <div
             :class="[
-              'form-block__steps-list__step-bubble',
+              'form-block__steps-list-step-bubble',
               this.stepsProgressive.steps[this.stepsProgressive.currentStep] &&
               index + 1 <= this.stepsProgressive.currentStep
-                ? ''
+                ? 'active'
                 : '',
             ]"
           >
             {{ step }}
-            {{ stepsProgressive.currentStep }}
           </div>
-          <div class="form-block__steps-list__step-line">
+          <div class="form-block__steps-list-step-line">
             <div
               :class="[
-                'form-block__steps-list__step-line-fill ',
-                index + 1 == this.stepsProgressive.currentStep
-                  ? 'form-block__steps-list__step-line-fill_half'
+                'form-block__steps-list-step-line-fill',
+                this.stepsProgressive.steps[
+                  this.stepsProgressive.currentStep
+                ] && index + 1 == this.stepsProgressive.currentStep
+                  ? 'form-block__steps-list-step-line-fill_half'
                   : '',
               ]"
             ></div>
@@ -324,11 +318,11 @@ export default {
       @media (max-width: 575px) {
         display: none;
       }
-      &__step {
+      &-step {
         display: flex;
         align-items: center;
 
-        &:last-child .form-block__steps-list__step-line {
+        &:last-child .form-block__steps-list-step-line {
           display: none;
         }
         &-bubble {
@@ -359,6 +353,9 @@ export default {
             background-color: #4a3aff;
             height: 100%;
             border-radius: 40px;
+            &_light-background {
+              background-color: #eff0f6;
+            }
             &_half {
               width: 50%;
             }
@@ -424,7 +421,6 @@ export default {
   background-color: #4a3aff;
   color: #fff;
 }
-
 
 .button-form__submit {
   padding-top: 12px;
