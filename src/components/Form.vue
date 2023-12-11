@@ -88,7 +88,6 @@ export default {
     selectedPrice: function (value, oldValue) {
       if (typeof value === 'String') {
         oldValue = value
-        console.log(oldValue, 'TYT')
       }
     },
     submitDate: function () {
@@ -101,7 +100,6 @@ export default {
         check: this.servicesChecked,
       }
       localStorage.setItem('submitObjData', JSON.stringify(this.submitObjData))
-      console.log('prosto', this.submitObjData)
     },
   },
 }
@@ -275,7 +273,6 @@ export default {
           </div>
         </div>
       </div>
-      {{ stepsProgressive.currentStep }} тут
     </div>
     <div
       :class="[
@@ -328,8 +325,6 @@ export default {
         &-bubble {
           width: 34px;
           height: 34px;
-          // background-color: #4a3aff;
-          // color: #fff;
           border-radius: 100%;
           font-size: 16px;
           font-weight: 400;
@@ -350,7 +345,6 @@ export default {
           }
 
           &-fill {
-            background-color: #4a3aff;
             height: 100%;
             border-radius: 40px;
             &_light-background {
@@ -358,6 +352,7 @@ export default {
             }
             &_half {
               width: 50%;
+              background-color: #4a3aff;
             }
           }
         }
