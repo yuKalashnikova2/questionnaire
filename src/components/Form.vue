@@ -63,6 +63,19 @@ export default {
   },
 
   methods: {
+    activeBubble(index) {
+      return {
+        active: index <= this.stepsProgressive.currentStep,
+      }
+    },
+    lineFillHalf(index) {
+      return {
+        'form-block__steps-list-step-line-fill_half':
+          this.stepsProgressive.steps[this.stepsProgressive.currentStep] &&
+          index + 1 == this.stepsProgressive.currentStep,
+      }
+    },
+
     nextStep() {
       if (this.stepsProgressive.currentStep <= 3)
         this.stepsProgressive.currentStep++
@@ -85,7 +98,7 @@ export default {
         oldValue = value
       }
     },
-    submitDate: function () {
+    submitData: function () {
       this.submitObjData = {
         name: this.name,
         email: this.email,
@@ -110,10 +123,7 @@ export default {
           <div
             :class="[
               'form-block__steps-list-step-bubble',
-              this.stepsProgressive.steps[this.stepsProgressive.currentStep] &&
-              index + 1 <= this.stepsProgressive.currentStep
-                ? 'active'
-                : '',
+              activeBubble(index + 1),
             ]"
           >
             {{ step }}
@@ -122,11 +132,7 @@ export default {
             <div
               :class="[
                 'form-block__steps-list-step-line-fill',
-                this.stepsProgressive.steps[
-                  this.stepsProgressive.currentStep
-                ] && index + 1 == this.stepsProgressive.currentStep
-                  ? 'form-block__steps-list-step-line-fill_half'
-                  : '',
+                lineFillHalf(index),
               ]"
             ></div>
           </div>
@@ -264,7 +270,7 @@ export default {
             >{{ formInfo[3].subtitle }}</span
           >
           <div class="button-form__submit">
-            <Button label="Submit" @click="submitDate()" />
+            <Button label="Submit" @click="submitData()" />
           </div>
         </div>
       </div>
