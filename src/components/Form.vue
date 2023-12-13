@@ -1,12 +1,12 @@
 <script>
 import Button from './Button.vue'
-import Inputs from './Inputs.vue'
+import Input from './Input.vue'
 import Radio from './Radio.vue'
 import CheckboxMultiple from './CheckboxMultiple.vue'
 export default {
   components: {
     Button,
-    Inputs,
+    Input,
     Radio,
     CheckboxMultiple,
   },
@@ -67,10 +67,6 @@ export default {
       if (this.stepsProgressive.currentStep <= 3)
         this.stepsProgressive.currentStep++
       this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true
-      console.log(
-        'next step',
-        (this.stepsProgressive.steps[this.stepsProgressive.currentStep] = true)
-      )
     },
     previousStep() {
       if (this.stepsProgressive.currentStep) this.stepsProgressive.currentStep--
@@ -82,7 +78,6 @@ export default {
       } else {
         arr.push(value)
       }
-      console.log('выполнено')
       return arr
     },
     selectedPrice: function (value, oldValue) {
@@ -146,7 +141,7 @@ export default {
             : '',
         ]"
       >
-        <!-- inputs compon -->
+        <!-- Input compon -->
         <div v-if="1 === stepsProgressive.currentStep">
           <h2 class="form-block__contact-details__title">
             {{ formInfo[0].title }}
@@ -155,7 +150,7 @@ export default {
             formInfo[0].subtitle
           }}</span>
           <div class="form-block__slots">
-            <Inputs
+            <Input
               v-model:enterText.trim="name"
               name="Name"
               placeholder="John Carter"
@@ -167,8 +162,8 @@ export default {
                 src="/assets/svg/inputs/user.svg"
                 alt="user"
               />
-            </Inputs>
-            <Inputs
+            </Input>
+            <Input
               v-model:enterText.trim="email"
               name="Email"
               placeholder="Email address"
@@ -180,8 +175,8 @@ export default {
                 src="/assets/svg/inputs/email.svg"
                 alt="email"
               />
-            </Inputs>
-            <Inputs
+            </Input>
+            <Input
               v-model:enterText.trim="phone"
               name="Phone Number"
               placeholder="(123) 456 - 7890"
@@ -193,8 +188,8 @@ export default {
                 src="/assets/svg/inputs/phone.svg"
                 alt="phone"
               />
-            </Inputs>
-            <Inputs
+            </Input>
+            <Input
               v-model:enterText.trim="company"
               name="Company"
               placeholder="Company name"
@@ -206,7 +201,7 @@ export default {
                 src="/assets/svg/inputs/company.svg"
                 alt="company"
               />
-            </Inputs>
+            </Input>
           </div>
         </div>
 
@@ -323,6 +318,7 @@ export default {
           display: none;
         }
         &-bubble {
+          background-color: #eff0f6;
           width: 34px;
           height: 34px;
           border-radius: 100%;
@@ -393,6 +389,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       gap: 28px;
+      justify-content: space-between;
     }
   }
   &-buttons {

@@ -1,12 +1,12 @@
 <script>
 import Logo from './Logo.vue'
 import Button from './Button.vue'
-import Inputs from './Inputs.vue'
+import Input from './Input.vue'
 export default {
   components: {
     Logo,
     Button,
-    Inputs
+    Input,
   },
   data() {
     return {
@@ -20,16 +20,15 @@ export default {
   <div class="footer">
     <div class="footer__copyright">
       <Logo isSmall />
-      <div class="footer__copyright-text"
-        >Copyright © 2023 BRIX Templates | All Rights Reserved</div
-      >
+      <div class="footer__copyright-text">
+        Copyright © 2023 BRIX Templates | All Rights Reserved
+      </div>
     </div>
 
     <div class="footer__subscribe">
-      <Inputs placeholder="Enter your email" isWidth>
+      <Input placeholder="Enter your email" isWidth>
         <Button label="Subscribe" smallSize />
-    </Inputs>
-  
+      </Input>
     </div>
   </div>
 </template>
@@ -45,7 +44,6 @@ export default {
   }
 
   &__copyright {
- 
     display: flex;
     flex-direction: column;
     gap: 16px;

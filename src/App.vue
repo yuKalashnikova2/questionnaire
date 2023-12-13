@@ -2,7 +2,7 @@
 import Header from './components/Header.vue'
 import Form from './components/Form.vue'
 import Footer from './components/Footer.vue'
-import Inputs from './components/Inputs.vue'
+import Input from './components/Input.vue'
 import CheckboxMultiple from './components/CheckboxMultiple.vue'
 import Radio from './components/Radio.vue'
 export default {
@@ -10,7 +10,7 @@ export default {
     Header,
     Form,
     Footer,
-    Inputs,
+    Input,
     Radio,
     CheckboxMultiple,
   },
@@ -54,8 +54,6 @@ export default {
   <div class="container">
     <Header />
 
-
-
     <div class="preview">
       <h1 class="preview__title">Get a project quote</h1>
       <div class="preview__text">
@@ -63,9 +61,7 @@ export default {
         free to add as much detail as needed.
       </div>
 
-      <Form :formInfo="formInfo">
-
-      </Form>
+      <Form :formInfo="formInfo"> </Form>
     </div>
   </div>
 
@@ -79,7 +75,7 @@ export default {
 <style lang="scss">
 .container {
   max-width: 1242px;
-  margin: 0 100px;
+  margin: 0 auto;
   @media (max-width: 575px) {
     margin: 0 10px;
   }
@@ -113,7 +109,4 @@ export default {
 .gray-line {
   border-bottom: 1px solid #d9dbe9;
 }
-
-
-
 </style>

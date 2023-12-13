@@ -40,8 +40,7 @@ export default {
         :placeholder="placeholder"
         :value="enterText"
         @input="
-          $emit('update:enterText', $event.target.value),
-            console.log($event.target.value)
+          $emit('update:enterText', $event.target.value)
         "
       />
       <slot></slot>

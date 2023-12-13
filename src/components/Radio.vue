@@ -36,7 +36,7 @@ export default {
 </script>
 
 <template>
-  <label class="checkbox radio">
+  <label :class="['checkbox', 'radio', oldValue == value ? 'checkbox_checked' : ''  ]">
     <div
       :class="['radio__input', oldValue == value ? 'radio__input_checked' : '']"
     >
