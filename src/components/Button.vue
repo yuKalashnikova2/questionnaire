@@ -14,13 +14,18 @@ export default {
         required: false
     }
   },
-  emits: {
-
+  methods: {
+    changeButtonStyle(smallSize, lightButton) {
+      return {
+        'button_button-small': smallSize,
+        'button_previous': lightButton
+      }
+    }
   }
 }
 </script>
 <template>
-  <button :class="['button', smallSize ? 'button_button-small' : '', lightButton ? 'button_previous': '']">{{ label }}</button>
+  <button :class="['button', changeButtonStyle(smallSize, lightButton)]">{{ label }}</button>
 </template>
 
 <style lang="scss" scoped>

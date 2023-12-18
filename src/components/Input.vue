@@ -17,10 +17,6 @@ export default {
         type: Boolean,
         required: false
     },
-    enterText: {
-      type: String, 
-      required: true
-    },
     isWidth: {
       type: Boolean, 
       required: false
