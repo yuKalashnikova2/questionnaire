@@ -3,7 +3,7 @@ export default {
  props: {
     enterText: {
       type: String,
-      required: true,
+      required: false,
     },
     placeholder: {
       type: String,
