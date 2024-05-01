@@ -1,7 +1,15 @@
-# Vue 3 + Vite
+# Проект "Questionnaire"
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Привет! Этот проект представляет собой форму анкеты, где пользователи могут заполнять информацию, выбирать опции с помощью чекбоксов и радиокнопок, и отправлять данные для анализа. 
 
-## Recommended IDE Setup
+## Технологии:
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- Vue 3 - основной фреймворк для создания интерфейса и обработки данных
+- Sass - для стилизации элементов формы и интерфейса
+
+## Инструкции по установке и запуску:
+
+1. Установите все зависимости, запустив команду npm install
+2. Запустите проект, выполните команду npm run dev
+3. Откройте ваш браузер и перейдите по адресу http://localhost:3000
+

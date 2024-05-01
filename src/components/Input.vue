@@ -35,9 +35,7 @@ export default {
         :name="name"
         :placeholder="placeholder"
         :value="enterText"
-        @input="
-          $emit('update:enterText', $event.target.value)
-        "
+        
       />
       <slot></slot>
     </div>
